@@ -1944,20 +1944,36 @@
   :group 'mdi
   :group 'tools)
 
-(defface mdi-face
-  `((t (:font "Material Design Icons")))
+(defface mdi-face `((t (:family "Material Design Icons" :height 0.9)))
   "Face for Material Design icons."
   :group 'mdi-faces)
 
 ;;;###autoload
-(defun mdi (icon &optional spaced)
+(defun mdi (icon &optional padded)
   "Return a fontified icon string."
   (let* ((code (cdr (assoc icon mdi-icons-alist)))
-         (result (propertize code 'face 'mdi-face)))
-    (if spaced
-        (format " %s " result)
+         (result (propertize code
+                             'face 'mdi-face
+                             'font-lock-ignore t
+                             'rear-nonsticky t)))
+    (if padded
+        (concat
+         (propertize " " 'display '(space . (:width (5))))
+         result
+         (propertize " " 'display '(space . (:width (5)))))
       result)))
 
-(set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
+;; NOTE: Should not be needed anymore thanks to `font-lock-ignore', even on Windows.
+;;
+;;       (set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
+
+;; NOTE: See https://github.com/dbordak/telephone-line/issues/36
+;;
+;;       So that working will depend upon telephone-line not accounting for property
+;;       tags. Basically, it'll see that it's 3 columns and pad accordingly, but visually
+;;       it'll consume whatever the width of the icon is + 10px. If you want to pad it
+;;       like that, you'll need to use widths of (3*(normal font width)-(icon font
+;;       width))/2. This would also give you almost a full character of space around it,
+;;       though.
 
 (provide 'mdi)
