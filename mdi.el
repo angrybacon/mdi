@@ -1952,10 +1952,7 @@
 (defun mdi (icon &optional padded)
   "Return a fontified icon string."
   (let* ((code (cdr (assoc icon mdi-icons-alist)))
-         (result (propertize code
-                             'face 'mdi-face
-                             'font-lock-ignore t
-                             'rear-nonsticky t)))
+         (result (propertize code 'face 'mdi-face 'rear-nonsticky t)))
     (if padded
         (concat
          (propertize " " 'display '(space . (:width (5))))
@@ -1963,9 +1960,9 @@
          (propertize " " 'display '(space . (:width (5)))))
       result)))
 
-;; NOTE: Should not be needed anymore thanks to `font-lock-ignore', even on Windows.
-;;
-;;       (set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
+;; NOTE: Should not be needed anymore thanks to `font-lock-ignore', even on
+;;       Windows. Except `font-lock+' isn't available on Windows.
+(set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
 
 ;; NOTE: See https://github.com/dbordak/telephone-line/issues/36
 ;;
