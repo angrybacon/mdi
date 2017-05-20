@@ -25,6 +25,10 @@
 
 ;;; Code:
 
+;; NOTE: Should not be needed anymore thanks to `font-lock-ignore', even on
+;;       Windows. Except `font-lock+' isn't available on Windows.
+(set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
+
 (defconst mdi-icons-alist
   '(("access-point" . "\xf002")
     ("access-point-network" . "\xf003")
@@ -1961,19 +1965,12 @@
 
 (defgroup mdi nil
   "Manage Material Design icons."
-  :prefix "mdi-"
   :group 'appearance
-  :group 'convenience)
-
-(defgroup mdi-faces nil
-  "Manage how Material Design icons are styled."
-  :prefix "mdi-"
-  :group 'mdi
-  :group 'tools)
+  :prefix "mdi-")
 
 (defface mdi-face `((t (:family "Material Design Icons" :height 0.9)))
   "Face for Material Design icons."
-  :group 'mdi-faces)
+  :group 'mdi)
 
 ;;;###autoload
 (defun mdi (icon &optional padded)
@@ -1987,17 +1984,8 @@
          (propertize " " 'display '(space . (:width (5)))))
       result)))
 
-;; NOTE: Should not be needed anymore thanks to `font-lock-ignore', even on
-;;       Windows. Except `font-lock+' isn't available on Windows.
-(set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
-
 ;; NOTE: See https://github.com/dbordak/telephone-line/issues/36
-;;
-;;       So that working will depend upon telephone-line not accounting for property
-;;       tags. Basically, it'll see that it's 3 columns and pad accordingly, but visually
-;;       it'll consume whatever the width of the icon is + 10px. If you want to pad it
-;;       like that, you'll need to use widths of (3*(normal font width)-(icon font
-;;       width))/2. This would also give you almost a full character of space around it,
-;;       though.
+;;       (/ 2 (- (* 3 (normal-width)) (icon-width)))
 
 (provide 'mdi)
+;;; mdi.el ends here
