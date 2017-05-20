@@ -1964,7 +1964,7 @@
     ("zip-box" . "\xf5c4")))
 
 (defgroup mdi nil
-  "Manage Material Design icons."
+  "Insert Material Design icons."
   :group 'appearance
   :prefix "mdi-")
 
