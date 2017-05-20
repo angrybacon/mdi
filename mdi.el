@@ -1,3 +1,30 @@
+;;; mdi.el --- Insert Material Design icons          -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2017  Mathieu Marques
+
+;; Author: Mathieu Marques <mathieumarques78@gmail.com>
+;; Created: May 20, 2017
+;; Homepage: https://github.com/angrybacon/mdi
+;; Keywords: convenience, faces
+
+;; This program is free software. You can redistribute it and/or modify it under
+;; the terms of the Do What The Fuck You Want To Public License, version 2 as
+;; published by Sam Hocevar.
+;;
+;; This program is distributed in the hope that it will be useful, but WITHOUT
+;; ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+;; FOR A PARTICULAR PURPOSE.
+;;
+;; You should have received a copy of the Do What The Fuck You Want To Public License
+;; along with this program. If not, see http://www.wtfpl.net/.
+
+;;; Commentary:
+
+;; This package provides a function to easily insert icons showcased at
+;; https://materialdesignicons.com/
+
+;;; Code:
+
 (defconst mdi-icons-alist
   '(("access-point" . "\xf002")
     ("access-point-network" . "\xf003")
