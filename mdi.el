@@ -25,6 +25,7 @@
 
 ;;; Code:
 
+
 ;; NOTE: Should not be needed anymore thanks to `font-lock-ignore', even on
 ;;       Windows. Except `font-lock+' isn't available on Windows.
 (set-fontset-font "fontset-default" '(#xf000 . #xffff) "Material Design Icons")
@@ -1963,6 +1964,10 @@
     ("youtube-play" . "\xf5c3")
     ("zip-box" . "\xf5c4")))
 
+
+;;;; Variables
+
+
 (defgroup mdi nil
   "Insert Material Design icons."
   :group 'appearance
@@ -1971,6 +1976,10 @@
 (defface mdi-face `((t (:family "Material Design Icons" :height 0.9)))
   "Face for Material Design icons."
   :group 'mdi)
+
+
+;;;; Commands
+
 
 ;;;###autoload
 (defun mdi (icon &optional padded)
@@ -1984,8 +1993,6 @@
          (propertize " " 'display '(space . (:width (5)))))
       result)))
 
-;; NOTE: See https://github.com/dbordak/telephone-line/issues/36
-;;       (/ 2 (- (* 3 (normal-width)) (icon-width)))
 
 (provide 'mdi)
 ;;; mdi.el ends here
